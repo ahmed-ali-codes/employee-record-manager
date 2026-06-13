@@ -1,35 +1,38 @@
 #include <stdio.h>
-#include "function.h"
+#include "employee.h"
 
 int main(int argc, char *argv[])
 {
     if (argc != 2)
     {
-        printf("Usage: %s input.txt\n", argv[0]);
+        printf("Usage: %s <input_file>\n", argv[0]);
         return 1;
     }
 
-    char names[MAX_RECORDS][MAX_NAME_LEN];
-    int ages[MAX_RECORDS];
-    float wages[MAX_RECORDS];
-    int count;
+    Employee records[MAX_RECORDS];
+    int line_count;
 
-    // Read data from input file
-    readDataFromFile(argv[1], names, ages, wages, &count);
+    // Read records from the input file
+    if (readFile(argv[1], records, &line_count) == -1)
+    {
+        return 1;
+    }
 
-    // Display all records
-    display_result(names, ages, wages, count);
+    // Display records
+    displayRecords(records, line_count);
 
-    // Write data to CSV file
-    writeDataToCSV("output.csv", names, ages, wages, count);
+    // Search for a record by name (optional)
+    int choice;
+    printf("\n1. Search by Name\n2. Write Data in Reverse to File and Exit\nChoose an option: ");
+    scanf("%d", &choice);
 
-    // Ask for name to search
-    char search_name[MAX_NAME_LEN];
-    printf("Enter name to search: ");
-    scanf("%s", search_name);
+    if (choice == 1)
+    {
+        searchEmployeeByName(records, line_count);
+    }
 
-    // Search and display result
-    searchByName(names, ages, wages, count, search_name);
+    // Write records to the output file
+    writeFileInReverse("output.csv", records, line_count);
 
     return 0;
 }

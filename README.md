@@ -1,79 +1,88 @@
-# 📊 Employee Record Manager in C
+# 👨‍💼 Employee Record Manager Using Structures in C
 
-This C program reads employee data (name, age, wage) from a text file, displays all records, writes the data to a CSV file, and allows the user to search for an employee by name.
-
----
-
-## 📂 Files Included
-
-- `main.c` – Handles main program execution.
-- `function.c` – Contains function implementations for file I/O and search.
-- `function.h` – Header file with function declarations and constants.
+This program uses **C structures** to store and manage employee information such as names, ages, and wages. It reads from a file, displays records, allows searching by name, and writes the data to an output file in **reverse order**.
 
 ---
 
-## 🔧 Features
+## 📁 Project Structure
 
-1. **Read Data from File**  
-   Reads employee records from a text file specified in the command line.
-
-2. **Display All Records**  
-   Prints all employee data to the console.
-
-3. **Write to CSV File**  
-   Saves the records to `output.csv` in CSV format.
-
-4. **Search by Name**  
-   Prompts the user to enter a name and displays the corresponding employee details.
+- `main.c` – Entry point of the program.
+- `employee.h` – Header file containing structure definitions and function declarations.
+- `employee.c` – Contains the implementation of core functionalities.
 
 ---
 
-## 📥 Input File Format (`input.txt`)
+## 🧠 Features
 
-Each line in the file should follow this format:
+✅ Read employee data from a text file  
+✅ Display all employee records on screen  
+✅ Search employee by name  
+✅ Write data to an output file in **reverse order**  
+✅ Uses **structs** for clean data handling
+
+---
+
+## 🔤 Input Format (`input.txt`)
+
+Each line of the input file should contain:
 
 ```
-John 30 2500.50
-Alice 25 3000.00
-Bob 40 4000.75
+Name Age Wage
 ```
 
-- **Name** (single word)
-- **Age** (integer)
-- **Wage** (float)
+Example:
 
-Maximum of 10 records are allowed due to the limit defined (`MAX_RECORDS`).
+```
+Ahmed 30 5000.75
+Ali 25 4000.50
+Sarah 28 4500.00
+```
 
 ---
 
-## 🛠️ How to Compile & Run
+## ⚙️ Compilation & Execution
 
 ```bash
-gcc main.c function.c -o recordManager
-./recordManager input.txt
+gcc main.c employee.c -o employeeManager
+./employeeManager input.txt
 ```
 
 ---
 
-## 📌 Sample Output
+## 🧪 Sample Output
 
 ```
-All Records:
-Name: John, Age: 30, Wage: 2500.50
-Name: Alice, Age: 25, Wage: 3000.00
-Name: Bob, Age: 40, Wage: 4000.75
-Data written to output.csv successfully.
-Enter name to search: Alice
-Name: Alice, Age: 25, Wage: 3000.00
+Employee Records:
+Name: Ahmed, Age: 30, Wage: 5000.75
+Name: Ali, Age: 25, Wage: 4000.50
+Name: Sarah, Age: 28, Wage: 4500.00
+
+1. Search by Name
+2. Write Data in Reverse to File and Exit
+Choose an option: 1
+Enter name to search: Sarah
+Name: Sarah, Age: 28, Wage: 4500.00
+
+Data written to output.csv in reverse order.
 ```
 
 ---
 
-## 🧠 Notes
+## 📦 Output File (output.csv)
 
-- Ensure the input file is in the same directory or provide the full path.
-- Only exact name matches (case-sensitive) are considered in search.
-- Supports a maximum of 10 records. Modify `MAX_RECORDS` in `function.h` to increase.
+```
+Sarah,28,4500.00
+Ali,25,4000.50
+Ahmed,30,5000.75
+```
+
+---
+
+## 📝 Notes
+
+- The program supports **up to 100 records** (modifiable in `employee.h` by changing `MAX_RECORDS`).
+- The search is **case-sensitive**.
+- Data is written to `output.csv` even if the user skips the search.
 
 ---
 
